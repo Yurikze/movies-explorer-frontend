@@ -1,0 +1,41 @@
+.promo {
+  background: url('../../images/promo-banner.png') no-repeat;
+  background-position: center 45%;
+  background-size: 320px 320px;
+  background-color: #f3c1f8;
+}
+
+.promo__banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 184px 10px 224px;
+}
+
+.promo__heading {
+  font-size: 50px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  text-align: center;
+  line-height: calc(58 / 50);
+  max-width: 730px;
+}
+
+.promo__links {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  list-style: none;
+  background-color: #000;
+  padding: 24px;
+  margin: 0;
+}
+
+.promo__link {
+  color: #fff;
+  text-decoration: underline;
+  line-height: calc(16 / 13);
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+}

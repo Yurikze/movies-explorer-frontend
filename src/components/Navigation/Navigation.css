@@ -1,0 +1,21 @@
+.navigation__links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  font-weight: 500;
+}
+
+.navigation__link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.navigation__link_type_signin {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 20px;
+  background-color: #000;
+  border-radius: 3px;
+}

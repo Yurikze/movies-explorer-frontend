@@ -1,9 +1,11 @@
+import Main from '../Main/Main';
 import './App.css';
+
 
 function App() {
   return (
-    <div className="container">
-      123
+    <div className='App'>
+      <Main />
     </div>
   );
 }
