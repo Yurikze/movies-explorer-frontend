@@ -1,6 +1,6 @@
 .promo {
   background: url('../../images/promo-banner.png') no-repeat;
-  background-position: center 45%;
+  background-position: center 55%;
   background-size: 320px 320px;
   background-color: #f3c1f8;
 }
@@ -21,21 +21,3 @@
   max-width: 730px;
 }
 
-.promo__links {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  list-style: none;
-  background-color: #000;
-  padding: 24px;
-  margin: 0;
-}
-
-.promo__link {
-  color: #fff;
-  text-decoration: underline;
-  line-height: calc(16 / 13);
-  font-weight: 500;
-  font-size: 13px;
-  cursor: pointer;
-}

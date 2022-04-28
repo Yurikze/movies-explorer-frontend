@@ -1,0 +1,8 @@
+.main__heading {
+  font-weight: normal;
+  margin: 0;
+  padding-bottom: 20px;
+  font-size: 22px;
+  line-height: calc((27 / 22));
+  border-bottom: 1px solid #000;
+}
