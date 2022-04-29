@@ -60,3 +60,56 @@
   line-height: calc(17 / 14);
   color: #a0a0a0;
 }
+
+@media (max-width: 999px) {
+  .about__cols {
+    gap: 30px;
+  }
+
+  .about__back {
+    flex-basis: 140px;
+  }
+
+  .about__cols {
+    margin-bottom: 93px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .about__cols {
+    margin: 60px 0;
+    gap: 56px;
+    flex-direction: column;
+  }
+
+  .about__heading {
+    font-size: 18px;
+    line-height: calc(22 / 18);
+    margin-bottom: 16px;
+  }
+
+  .about__text {
+    font-size: 11px;
+    line-height: calc(16 / 11);
+  }
+
+  .about__back {
+    flex-basis: 100px;
+  }
+
+  .about__progress {
+    font-size: 11px;
+    line-height: calc(13 / 11);
+    padding: 11px 10px;
+  }
+
+  .about__label {
+    font-size: 11px;
+    line-height: calc(13 / 11);
+  }
+}

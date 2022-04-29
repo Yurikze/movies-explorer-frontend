@@ -16,3 +16,13 @@
   font-size: 13px;
   cursor: pointer;
 }
+
+@media (max-width: 767px) {
+  .nav-tab__links {
+    gap: 24px;
+  }
+
+  .nav-tab__link {
+    font-size: 11px;
+  }
+}

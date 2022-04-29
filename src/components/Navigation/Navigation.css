@@ -19,3 +19,14 @@
   background-color: #000;
   border-radius: 3px;
 }
+
+@media (max-width: 767px) {
+  .navigation__links {
+    gap: 14px;
+    font-size: 10px;
+  }
+
+  .navigation__link_type_signin {
+    padding: 5px 12px;
+  }
+}

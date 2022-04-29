@@ -21,3 +21,17 @@
   max-width: 730px;
 }
 
+@media (max-width: 767px) {
+  .promo {
+    background-size: 248px 248px
+  }
+
+  .promo__banner {
+    padding: 207px 10px 246px;
+  }
+
+  .promo__heading {
+    font-size: 31px;
+    line-height: calc(39 / 31);
+  }
+}
