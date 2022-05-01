@@ -1,0 +1,29 @@
+.movies-list {
+  padding-top: 70px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movies-list__list {
+  padding: 0;
+  margin: 0 0 50px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 37px 24px;
+}
+
+.movies-list__more {
+  padding: 11px 60px;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+}

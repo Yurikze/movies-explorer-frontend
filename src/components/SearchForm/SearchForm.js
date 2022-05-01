@@ -1,5 +1,5 @@
-import FilterCheckbox from '../components/FilterCheckbox/FilterCheckbox';
-import { ReactComponent as SearchIcon } from '../images/search-icon.svg';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import { ReactComponent as SearchIcon } from '../../images/search-icon.svg';
 import './SearchForm.css';
 
 const SearchForm = () => {

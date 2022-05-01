@@ -1,10 +1,12 @@
-import SearchForm from "../../SearchForm/SearchForm"
+import SearchForm from "../SearchForm/SearchForm"
+import MoviesCardList from "../MoviesCardList/MoviesCardList"
 
 const Movies = () => {
   
   return (
     <div className="movies container">
       <SearchForm />
+      <MoviesCardList />
     </div>
   )
 }
