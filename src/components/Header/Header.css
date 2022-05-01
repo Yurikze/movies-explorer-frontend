@@ -3,4 +3,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 70px;
+}
+
+.header_isHome {
+  background-color: #f3c1f8;
+}
+
+.header__account {
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@media (max-width: 999px) {
+  .header {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
 }

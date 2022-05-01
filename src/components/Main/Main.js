@@ -5,7 +5,6 @@ import NavTab from '../NavTab/NavTab';
 import Promo from '../Promo/Promo';
 import Techs from '../Techs/Techs';
 import './Main.css';
-import Footer from '../Footer/Footer';
 
 const Main = () => {
   return (
@@ -16,7 +15,6 @@ const Main = () => {
       <Techs />
       <AboutMe />
       <Portfolio />
-      <Footer />
     </div>
   )
 }
