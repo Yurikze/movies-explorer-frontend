@@ -1,22 +1,52 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from '../../utils/usePathname';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
+import SideDrawer from '../SideDrawer/SideDrawer';
 import './Header.css';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const pathname = usePathname();
 
-  const classNames = `header ${
-    pathname === '/' ? 'header_isHome' : ''
-  }`;
+  const classNames = `header ${pathname === '/' ? 'header_isHome' : ''}`;
+
+  const closeDrawer = () => window.innerWidth > 999 && setIsDrawerOpen(false);
+
+  useEffect(() => {
+    window.addEventListener('resize', closeDrawer);
+    return () => {
+      window.removeEventListener('resize', closeDrawer);
+    };
+  }, []);
+
+  const handleShowDrawer = () => {
+    setIsDrawerOpen(true);
+  };
+
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false);
+  };
 
   return (
     <header className={classNames}>
       <Logo />
-      <Navigation />
-      {isLoggedIn && <span className="header__account">Аккаунт</span>}
+      <Navigation className="header__navigation" />
+      {isLoggedIn && (
+        <button onClick={handleShowDrawer} className="header__burger"></button>
+      )}
+      {isLoggedIn && (
+        <span className="header__account header__account_place_nav">
+          Аккаунт
+        </span>
+      )}
+      {isDrawerOpen && isLoggedIn && (
+        <SideDrawer onCloseDrawer={handleCloseDrawer}>
+          <Navigation />
+          <span className="header__account">Аккаунт</span>
+        </SideDrawer>
+      )}
     </header>
   );
 };

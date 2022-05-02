@@ -1,6 +1,12 @@
+.navigation {
+  display: flex;
+}
+
 .navigation__links {
   display: flex;
   list-style: none;
+  padding: 0;
+  margin: 0;
   gap: 30px;
   font-size: 12px;
   line-height: calc(16 / 12);
@@ -8,7 +14,6 @@
 }
 
 .navigation__link {
-  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -20,10 +25,23 @@
   border-radius: 3px;
 }
 
+@media (max-width: 999px) {
+  .navigation__links_place_drawer {
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 767px) {
   .navigation__links {
     gap: 14px;
     font-size: 10px;
+  }
+
+  .navigation__links_place_drawer {
+    font-size: 18px;
+    gap: 24px;
   }
 
   .navigation__link_type_signin {

@@ -18,10 +18,32 @@
   font-size: 14px;
 }
 
+.header__burger {
+  display: none;
+}
+
 @media (max-width: 999px) {
   .header {
     padding-left: 50px;
     padding-right: 50px;
+  }
+
+  .header__account_place_nav {
+    display: none;
+  }
+
+  .header__navigation {
+    display: none;
+  }
+
+  .header__burger {
+    display: inline-block;
+    background: url('../../images/burger.svg') no-repeat;
+    background-position: center;
+    height: 44px;
+    width: 44px;
+    border: none;
+    padding: 0;
   }
 }
 
