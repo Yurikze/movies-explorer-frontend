@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { usePathname } from '../../utils/usePathname';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
@@ -28,14 +29,19 @@ const Header = () => {
         <button onClick={handleShowDrawer} className="header__burger"></button>
       )}
       {isLoggedIn && (
-        <span className="header__account header__account_place_nav">
+        <NavLink
+          className="header__account header__account_place_nav"
+          to="/profile"
+        >
           Аккаунт
-        </span>
+        </NavLink>
       )}
       {isDrawerOpen && isLoggedIn && (
         <SideDrawer onCloseDrawer={handleCloseDrawer}>
           <Navigation />
-          <span className="header__account">Аккаунт</span>
+          <NavLink className="header__account" to="/profile">
+            Аккаунт
+          </NavLink>
         </SideDrawer>
       )}
     </header>

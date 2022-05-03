@@ -1,9 +1,9 @@
-import profile from '../../images/profile.JPG'
+import profile from '../../images/profile.JPG';
 import './AboutMe.css';
 
 const AboutMe = () => {
   return (
-    <section className="about-me container">
+    <section className="about-me container" id="student">
       <h3 className="main__heading about-me__heading">Студент</h3>
       <div className="about-me__content">
         <h2 className="about-me__title">Юрий</h2>
@@ -25,7 +25,7 @@ const AboutMe = () => {
         </ul>
       </div>
       <div className="about-me__avatar">
-        <img className='about-me__img' src={profile} alt="Профиль" />
+        <img className="about-me__img" src={profile} alt="Профиль" />
       </div>
     </section>
   );

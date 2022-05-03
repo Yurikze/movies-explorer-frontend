@@ -4,24 +4,36 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import './App.css';
 import NotFound from '../NotFound/NotFound';
-import Layout from '../Layout/Layout';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { useRouteMatch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import Profile from '../Profile/Profile';
+
 
 function App() {
+  const hideHeaderPaths = ['/notfound'];
+  const hideFooterPaths = ['/notfound', '/profile'];
+
   return (
     <div className="App">
+      {useRouteMatch(hideHeaderPaths) ? null : <Header />}
       <Switch>
         <Route path="/" exact>
-          <Layout>
-            <Main />
-          </Layout>
+          <Main />
         </Route>
         <Route path="/movies">
-          <Layout>
-            <Movies />
-          </Layout>
+          <Movies />
         </Route>
-        <Route path="*" component={NotFound} />
+        <Route path="/notfound">
+          <NotFound />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Redirect to="/notfound" />
       </Switch>
+      {useRouteMatch(hideFooterPaths) ? null : <Footer />}
     </div>
   );
 }
