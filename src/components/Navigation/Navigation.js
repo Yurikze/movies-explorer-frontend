@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 let isLoggedIn = true;
@@ -10,10 +11,20 @@ const Navigation = ({ className = '' }) => {
       <nav className={navClassNames}>
         <ul className="navigation__links navigation__links_place_drawer">
           <li className="navigation__links-item">
-            <a className="navigation__link">Фильмы</a>
+            <NavLink
+              className="navigation__link navigation__link_place_drawer"
+              to="/movies"
+            >
+              Фильмы
+            </NavLink>
           </li>
           <li className="navigation__links-item">
-            <a className="navigation__link">Сохраненные фильмы</a>
+            <NavLink
+              className="navigation__link navigation__link_place_drawer"
+              to="/movies"
+            >
+              Сохраненные фильмы
+            </NavLink>
           </li>
         </ul>
       </nav>

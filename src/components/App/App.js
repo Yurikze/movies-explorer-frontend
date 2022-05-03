@@ -1,25 +1,27 @@
 import { Switch } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
-import Footer from '../Footer/Footer'
 import './App.css';
+import NotFound from '../NotFound/NotFound';
+import Layout from '../Layout/Layout';
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <Switch>
-        <Route path="/movies">
-          <Movies />
-        </Route>
         <Route path="/" exact>
-          <Main />
+          <Layout>
+            <Main />
+          </Layout>
         </Route>
+        <Route path="/movies">
+          <Layout>
+            <Movies />
+          </Layout>
+        </Route>
+        <Route path="*" component={NotFound} />
       </Switch>
-      <Footer />
-
     </div>
   );
 }

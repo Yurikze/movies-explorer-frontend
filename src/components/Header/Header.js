@@ -12,15 +12,6 @@ const Header = () => {
 
   const classNames = `header ${pathname === '/' ? 'header_isHome' : ''}`;
 
-  const closeDrawer = () => window.innerWidth > 999 && setIsDrawerOpen(false);
-
-  useEffect(() => {
-    window.addEventListener('resize', closeDrawer);
-    return () => {
-      window.removeEventListener('resize', closeDrawer);
-    };
-  }, []);
-
   const handleShowDrawer = () => {
     setIsDrawerOpen(true);
   };

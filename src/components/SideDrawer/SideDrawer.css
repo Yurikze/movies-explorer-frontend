@@ -15,6 +15,7 @@
 }
 
 .sidedrawer__backdrop {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -40,6 +41,10 @@
 @media (max-width: 999px) {
   .sidedrawer {
     display: flex;
+  }
+
+  .sidedrawer__backdrop {
+    display: block;
   }
 }
 
