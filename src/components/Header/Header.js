@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { usePathname } from '../../utils/usePathname';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 import SideDrawer from '../SideDrawer/SideDrawer';
 import './Header.css';
 
-const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+const Header = ({isLoggedIn}) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const pathname = usePathname();
+
+  const { pathname } = useLocation();
 
   const classNames = `header ${pathname === '/' ? 'header_isHome' : ''}`;
 
@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header className={classNames}>
       <Logo />
-      <Navigation className="header__navigation" />
+      <Navigation className="header__navigation" isLoggedIn={isLoggedIn} />
       {isLoggedIn && (
         <button onClick={handleShowDrawer} className="header__burger"></button>
       )}
@@ -38,7 +38,7 @@ const Header = () => {
       )}
       {isDrawerOpen && isLoggedIn && (
         <SideDrawer onCloseDrawer={handleCloseDrawer}>
-          <Navigation />
+          <Navigation isLoggedIn={isLoggedIn} />
           <NavLink className="header__account" to="/profile">
             Аккаунт
           </NavLink>

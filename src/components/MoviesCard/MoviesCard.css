@@ -26,17 +26,25 @@
   margin: 0;
 }
 
-.movie__like-btn {
-  background: url('../../images/heart.svg') no-repeat;
-  background-position: center;
+.movies__btn {
   width: 30px;
   height: 30px;
   border: none;
   padding: 0;
 }
 
-.movie__like-btn_liked {
- background: url('../../images/heart_filled.svg');
+.movies__btn_type_like {
+  background: url('../../images/heart.svg') no-repeat;
+  background-position: center;
+}
+
+.movies__btn_type_delete {
+  background: url('../../images/delete.svg') no-repeat;
+  background-position: center;
+}
+
+.movies__btn_type_likeActive {
+  background: url('../../images/heart_filled.svg');
 }
 
 .movie__length {
@@ -48,7 +56,7 @@
 @media (max-width: 767px) {
   .movie__card {
     width: 100%;
-  } 
+  }
 
   .movie__data {
     gap: 14px;
@@ -62,5 +70,5 @@
 @media (max-width: 450px) {
   .movie__card {
     max-width: 300px;
-  } 
+  }
 }

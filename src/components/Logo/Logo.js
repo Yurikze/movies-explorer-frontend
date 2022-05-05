@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import logoSrc from '../../images/logo.svg';
 import './Logo.css'
 
-const Logo = () => {
+const Logo = ({className}) => {
   return (
-    <Link to="/">
+    <Link to="/" className={className}>
       <img className='logo' src={logoSrc} alt="Логотип" />
     </Link>
   );

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import profile from '../../images/profile.JPG';
 import './AboutMe.css';
 
@@ -17,10 +18,14 @@ const AboutMe = () => {
         </p>
         <ul className="about-me__socials">
           <li className="about-me__social-item">
-            <a className="about-me__link">LinkedIn</a>
+            <Link href="https://www.linkedin.com/in/yuri-zhulev-202543b7/" className="about-me__link">
+              LinkedIn
+            </Link>
           </li>
           <li className="about-me__social-item">
-            <a className="about-me__link">GitHub</a>
+            <Link href="https://github.com/Yurikze" className="about-me__link">
+              GitHub
+            </Link>
           </li>
         </ul>
       </div>

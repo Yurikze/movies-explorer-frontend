@@ -1,4 +1,3 @@
-import Header from '../Header/Header';
 import './Promo.css';
 
 const Promo = () => {
