@@ -25,7 +25,7 @@ const Login = () => {
     <section className="login">
       <Logo className="login__logo" />
       <h1 className="login__heading">Добро пожаловать!</h1>
-      <Form inputs={inputs} btnText="Зарегистрироваться" />
+      <Form inputs={inputs} btnText="Войти" />
       <p className="login__text">
         Еще не разрегистрированы?{' '}
         <Link className="login__link" to="/signup">
