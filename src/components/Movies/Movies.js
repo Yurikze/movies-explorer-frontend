@@ -7,6 +7,7 @@ const Movies = () => {
     <div className="movies container">
       <SearchForm />
       <MoviesCardList />
+      <button className="movies__more">Еще</button>
     </div>
   );
 };

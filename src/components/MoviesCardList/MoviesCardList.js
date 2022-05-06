@@ -48,7 +48,6 @@ const MoviesCardList = () => {
   return (
     <section className="movies-list">
       <ul className="movies-list__list">{content}</ul>
-      <button className="movies-list__more">Еще</button>
     </section>
   );
 };

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Portfolio.css';
 
 const Portfolio = () => {
@@ -6,13 +7,28 @@ const Portfolio = () => {
       <h3 className="portfolio__heading">Portfolio</h3>
       <ul className="portfolio__list">
         <li className="portfolio__item">
-          <a className="portfolio__link">Статичный сайт</a>
+          <Link
+            to="https://yurikze.github.io/russian-travel/"
+            className="portfolio__link"
+          >
+            Статичный сайт
+          </Link>
         </li>
         <li className="portfolio__item">
-          <a className="portfolio__link">Адаптивный сайт</a>
+          <Link
+            to="https://yurikze.github.io/russian-travel/"
+            className="portfolio__link"
+          >
+            Адаптивный сайт
+          </Link>
         </li>
         <li className="portfolio__item">
-          <a className="portfolio__link">Одностраничное приложение</a>
+          <Link
+            to="https://yurikze.github.io/russian-travel/"
+            className="portfolio__link"
+          >
+            Одностраничное приложение
+          </Link>
         </li>
       </ul>
     </section>

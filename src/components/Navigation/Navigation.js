@@ -8,6 +8,14 @@ const Navigation = ({ className = '', isLoggedIn }) => {
     return (
       <nav className={navClassNames}>
         <ul className="navigation__links navigation__links_place_drawer">
+          <li className="navigation__links-item navigation__links-item_to_main">
+          <NavLink
+              className="navigation__link navigation__link_place_drawer"
+              to="/"
+            >
+              Главная
+            </NavLink>
+          </li>
           <li className="navigation__links-item">
             <NavLink
               className="navigation__link navigation__link_place_drawer"
