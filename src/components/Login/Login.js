@@ -3,7 +3,7 @@ import Form from '../Form/Form';
 import Logo from '../Logo/Logo';
 import './Login.css';
 
-const Login = () => {
+const Login = ({onLogin}) => {
   const inputs = [
     {
       id: 'email',
@@ -11,6 +11,7 @@ const Login = () => {
       name: 'email',
       type: 'email',
       placeholder: 'E-mail',
+      required: true
     },
     {
       id: 'password',
@@ -18,6 +19,7 @@ const Login = () => {
       name: 'password',
       type: 'password',
       placeholder: 'Пароль',
+      required: true
     },
   ];
 
@@ -25,7 +27,7 @@ const Login = () => {
     <section className="login">
       <Logo className="login__logo" />
       <h1 className="login__heading">Добро пожаловать!</h1>
-      <Form inputs={inputs} btnText="Войти" />
+      <Form inputs={inputs} btnText="Войти" onSubmit={onLogin} />
       <p className="login__text">
         Еще не разрегистрированы?{' '}
         <Link className="login__link" to="/signup">

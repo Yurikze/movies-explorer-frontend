@@ -11,6 +11,11 @@
   flex-grow: 1;
 }
 
+.movie__img {
+  max-height: 205px;
+  height: 100%;
+}
+
 .movie__data {
   padding: 16px;
   display: grid;

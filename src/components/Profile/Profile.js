@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useFormWithValidation } from '../../utils/useForm';
 import './Profile.css';
 
-const Profile = () => {
+const Profile = ({ onLogout, onUpdate }) => {
+  const { name, email } = useContext(CurrentUserContext);
+  const { values, handleChange, errors, isValid, setValues } =
+    useFormWithValidation();
   const [isEditMode, setIsEditMode] = useState(false);
+
+  useEffect(() => {
+    setValues({ name, email });
+  }, [setValues, name, email]);
 
   const formEvtHandler = (e) => {
     e.preventDefault();
     if (isEditMode) {
-      console.log(123);
-
+      onUpdate(values)
       setIsEditMode(false);
     } else {
       setIsEditMode(true);
@@ -16,7 +24,7 @@ const Profile = () => {
   };
 
   const formBtn = isEditMode ? (
-    <button type="submit" className="profile__submit">
+    <button type="submit" className="profile__submit" disabled={!isValid}>
       Сохранить
     </button>
   ) : (
@@ -25,30 +33,45 @@ const Profile = () => {
 
   return (
     <section className="profile">
-      <h1 className="profile__headline">Привет, Виталий!</h1>
+      <h1 className="profile__headline">Привет, {name}!</h1>
       <form className="profile__form" onSubmit={formEvtHandler}>
         <div className="profile__input-container">
           <span className="profile__input-span">Имя</span>
           <input
+            name="name"
+            value={values.name || ''}
             className="profile__input"
             type="text"
             placeholder="Введите имя"
             disabled={!isEditMode}
+            onChange={handleChange}
+            minLength={2}
+            maxLength={30}
+            required
           />
+          <span className='profile__input-error'>{errors.name}</span>
+
         </div>
         <div className="profile__input-container">
           <span className="profile__input-span">E-mail</span>
           <input
+            name="email"
+            value={values.email || ''}
             className="profile__input"
             type="email"
             placeholder="Введите email"
             disabled={!isEditMode}
+            onChange={handleChange}
+            required
           />
+          <span className='profile__input-error'>{errors.email}</span>
         </div>
 
         {formBtn}
       </form>
-      <button className="profile__logout">Выйти из аккаунта</button>
+      <button className="profile__logout" onClick={onLogout}>
+        Выйти из аккаунта
+      </button>
     </section>
   );
 };

@@ -1,10 +1,11 @@
 import { useDateFormat } from '../../utils/useDateFormat';
+import { useImageFormat } from '../../utils/useImageFormat';
 import './MoviesCard.css';
 
 const MoviesCard = ({ movie, savedMoviesView }) => {
-  console.log(savedMoviesView);
-  const { title, imgSrc, duration, saved } = movie;
+  const { nameRU, image, duration, saved } = movie;
   const formatedDuration = useDateFormat(duration);
+  const formatedImgSrc = useImageFormat(image)
   const movieBtnClassnames = `movies__btn ${
     savedMoviesView
       ? 'movies__btn_type_delete'
@@ -13,9 +14,9 @@ const MoviesCard = ({ movie, savedMoviesView }) => {
 
   return (
     <div className="movie__card">
-      <img className="movie__img" src={imgSrc} alt={title} />
+      <img className="movie__img" src={formatedImgSrc} alt={nameRU} />
       <div className="movie__data">
-        <h3 className="movie__title">{title}</h3>
+        <h3 className="movie__title">{nameRU}</h3>
         <button className={movieBtnClassnames}></button>
         <p className="movie__length">{formatedDuration}</p>
       </div>

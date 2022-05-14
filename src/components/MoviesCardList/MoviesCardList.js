@@ -37,12 +37,12 @@ const DUMMUY_MOVIES = [
   },
 ];
 
-const MoviesCardList = () => {
+const MoviesCardList = ({movies = []}) => {
   const { pathname } = useLocation();
 
   const savedMoviesView = pathname === '/saved-movies';
 
-  let content = DUMMUY_MOVIES.map((movie) => (
+  let content = movies.map((movie) => (
     <MoviesCard key={movie.id} movie={movie} savedMoviesView={savedMoviesView} />
   ));
   return (

@@ -22,22 +22,26 @@
 
 .profile__input-container {
   padding-top: 16px;
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    'label input'
+    'error error';
   align-items: center;
 }
 
 .profile__input-container:first-of-type {
-  padding-bottom: 16px;
   border-bottom: 1px solid #e8e8e8;
 }
 
 .profile__input-span {
+  grid-area: label;
   white-space: nowrap;
   font-weight: 500;
   font-size: 11px;
 }
 
 .profile__input {
+  grid-area: input;
   text-align: right;
   width: 100%;
   border: none;
@@ -51,6 +55,15 @@
 
 .profile__input-container:last-of-type {
   margin-bottom: 200px;
+}
+
+.profile__input-error {
+  grid-area: error;
+  font-size: 11px;
+  min-height: 16px;
+  color: #ff4062;
+  padding-top: 2px;
+  box-sizing: border-box;
 }
 
 .profile__submit {

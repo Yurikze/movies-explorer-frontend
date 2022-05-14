@@ -16,6 +16,11 @@
   margin: 0 0 10px;
 }
 
+.form__input-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .form__input {
   width: 100%;
   box-sizing: border-box;
@@ -30,7 +35,7 @@
 }
 
 .form__error {
-  min-height: 10px;
+  min-height: 12px;
   font-size: 10px;
   color: #ff4062;
 }
@@ -42,6 +47,10 @@
   color: #fff;
   padding: 13px 13px 15px;
   font-size: 14px;
+}
+
+.form__submit:disabled {
+  background-color: #a0a0a0;
 }
 
 @media (max-width: 767px) {

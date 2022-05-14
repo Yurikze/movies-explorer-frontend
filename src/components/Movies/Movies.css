@@ -17,6 +17,28 @@
   margin: 0 auto;
 }
 
+.movies__preloader {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.movies__noresults {
+  padding: 15px 0;
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 18px;
+  margin: 0;
+}
+
+.movies__error {
+  color: #a0a0a0;
+  padding: 15px 0;
+  font-size: 13px;
+  margin: 0;
+}
+
 @media (max-width: 767px) {
   .movies__more {
     max-width: 240px;
