@@ -1,3 +1,5 @@
+import { imageThumbnail, imageFormat } from "./useImageFormat";
+
 class MainApi {
   constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
@@ -54,6 +56,43 @@ class MainApi {
       headers: this.headers,
       body: JSON.stringify({ name, email }),
     }).then(this._parseResponse);
+  }
+
+  fetchSavedMovies() {
+    return fetch(`${this.baseUrl}/movies`, {
+      method: 'GET',
+      headers: this.headers,
+      credentials: 'include',
+    }).then(this._parseResponse);
+  }
+
+  saveMovie(movie, userId) {
+    return fetch(`${this.baseUrl}/movies`, {
+      method: 'POST',
+      headers: this.headers,
+      credentials: 'include',
+      body: JSON.stringify({country: movie.country,
+        description: movie.description || '',
+        director: movie.director || '',
+        duration: movie.duration || 0,
+        image: imageFormat(movie.image),
+        movieId: movie.id,
+        nameEN: movie.nameEN || '',
+        nameRU: movie.nameRU || '',
+        owner: userId,
+        thumbnail: imageThumbnail(movie.image),
+        trailerLink: movie.trailerLink,
+        year: +movie.year || 0,
+      }),
+    }).then(this._parseResponse);
+  }
+
+  removeMovie(movieId) {
+    return fetch(`${this.baseUrl}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: this.headers,
+      credentials: 'include',
+    }).then(this._parseResponse)
   }
 }
 

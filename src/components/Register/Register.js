@@ -3,7 +3,7 @@ import Form from '../Form/Form';
 import Logo from '../Logo/Logo';
 import './Register.css';
 
-const Register = ({ onRegister }) => {
+const Register = ({ onRegister, error, clearError }) => {
   const inputs = [
     {
       id: 'name',
@@ -40,6 +40,8 @@ const Register = ({ onRegister }) => {
         inputs={inputs}
         btnText="Зарегистрироваться"
         onSubmit={onRegister}
+        error={error}
+        clearError={clearError}
       />
       <p className="register__text">
         Уже зарегистрированы?{' '}

@@ -3,7 +3,7 @@ import Form from '../Form/Form';
 import Logo from '../Logo/Logo';
 import './Login.css';
 
-const Login = ({onLogin}) => {
+const Login = ({onLogin, error, clearError}) => {
   const inputs = [
     {
       id: 'email',
@@ -27,7 +27,7 @@ const Login = ({onLogin}) => {
     <section className="login">
       <Logo className="login__logo" />
       <h1 className="login__heading">Добро пожаловать!</h1>
-      <Form inputs={inputs} btnText="Войти" onSubmit={onLogin} />
+      <Form error={error} inputs={inputs} btnText="Войти" onSubmit={onLogin} clearError={clearError} />
       <p className="login__text">
         Еще не разрегистрированы?{' '}
         <Link className="login__link" to="/signup">

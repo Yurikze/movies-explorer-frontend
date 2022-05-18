@@ -4,30 +4,35 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import './Movies.css';
 
-const Movies = ({ onSearch, movies, isLoading, error }) => {
+const Movies = ({
+  onSearch,
+  movies,
+  isLoading,
+  error,
+  onSave,
+  onRemove,
+  savedMovies,
+  noResults,
+}) => {
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
   const [gridCols, setGridCols] = useState(null);
   const [shownMovies, setShownMovies] = useState([]);
   const [limitMovies, setLimitMovies] = useState(null);
-  const [cacheMovies, setCacheMovies] = useState([]);
-
-  useEffect(() => {
-    localStorage.getItem('filteredMovies') &&
-      setCacheMovies(JSON.parse(localStorage.getItem('filteredMovies')));
-  }, []);
 
   useEffect(() => {
     let rtime;
     let timeout = false;
     let delta = 200;
 
-    window.addEventListener('resize', () => {
+    const resizeEvent = () => {
       rtime = new Date();
       if (timeout === false) {
         timeout = true;
         setTimeout(resizeAction, delta);
       }
-    });
+    };
+
+    window.addEventListener('resize', resizeEvent);
 
     const resizeAction = () => {
       if (new Date() - rtime < delta) {
@@ -36,6 +41,9 @@ const Movies = ({ onSearch, movies, isLoading, error }) => {
         timeout = false;
         setScreenWidth(window.screen.width);
       }
+    };
+    return () => {
+      window.removeEventListener('resize', resizeEvent);
     };
   }, []);
 
@@ -57,10 +65,6 @@ const Movies = ({ onSearch, movies, isLoading, error }) => {
   }, [screenWidth]);
 
   useEffect(() => {
-    setShownMovies(cacheMovies.slice(0, limitMovies));
-  }, [limitMovies, cacheMovies]);
-
-  useEffect(() => {
     movies.length && setShownMovies(movies.slice(0, limitMovies));
   }, [limitMovies, movies]);
 
@@ -68,9 +72,9 @@ const Movies = ({ onSearch, movies, isLoading, error }) => {
     setLimitMovies((prevValue) => (prevValue += gridCols));
   };
 
-  const handleSearch = (search) => {
+  const handleSearch = (search, isShort) => {
     initScreen(screenWidth);
-    onSearch(search);
+    onSearch(search, isShort);
   };
 
   let content = error ? (
@@ -78,15 +82,21 @@ const Movies = ({ onSearch, movies, isLoading, error }) => {
       Во время запроса произошла ошибка. Возможно, проблема с соединением или
       сервер недоступен. Подождите немного и попробуйте ещё раз
     </p>
-  ) : shownMovies.length ? (
-    <MoviesCardList movies={shownMovies} />
   ) : (
-    <p className="movies__noresults">Ничего не найдено</p>
+    <MoviesCardList
+      movies={shownMovies}
+      onSave={onSave}
+      savedMovies={savedMovies}
+      onRemove={onRemove}
+    />
   );
 
   return (
     <div className="movies container">
-      <SearchForm onSearch={handleSearch} />
+      <SearchForm
+        onSearch={handleSearch}
+        cacheValue={localStorage.getItem('search')}
+      />
       {isLoading ? (
         <div className="movies__preloader">
           <Preloader />
@@ -94,9 +104,10 @@ const Movies = ({ onSearch, movies, isLoading, error }) => {
       ) : (
         content
       )}
-
-      {(shownMovies.length < movies.length ||
-        shownMovies.length < cacheMovies.length) && (
+      {!isLoading && noResults && (
+        <p className="movies__noresults">Ничего не найдено</p>
+      )}
+      {shownMovies.length < movies.length && (
         <button onClick={handleShowMoreMovies} className="movies__more">
           Еще
         </button>

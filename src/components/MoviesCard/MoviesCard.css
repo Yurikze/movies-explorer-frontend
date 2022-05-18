@@ -36,6 +36,7 @@
   height: 30px;
   border: none;
   padding: 0;
+  cursor: pointer;
 }
 
 .movies__btn_type_like {
