@@ -11,11 +11,11 @@ const MoviesCard = ({
   onRemove,
   saved,
 }) => {
-  const { nameRU, image, duration, id } = movie;
+  const { nameRU, image, duration, id, trailerLink } = movie;
   const formatedDuration = useDateFormat(duration);
   const formatedImgSrc = imageFormat(image);
-
   const handleMovieAction = (e) => {
+    e.stopPropagation();
     if (saved) {
       const { _id } = savedMovies.find(
         (movie) => movie.movieId === id && userId === movie.owner,
@@ -27,7 +27,14 @@ const MoviesCard = ({
   };
 
   const handleRemoveMovie = (e) => {
+    e.stopPropagation();
     onRemove(movie._id);
+  };
+
+  const cardClickHandler = () => {
+    if (trailerLink) {
+      window.open(trailerLink, '_blank');
+    }
   };
 
   const cardButton = savedMoviesView ? (
@@ -47,7 +54,7 @@ const MoviesCard = ({
   );
 
   return (
-    <div className="movie__card">
+    <div onClick={cardClickHandler} className="movie__card">
       <img className="movie__img" src={formatedImgSrc} alt={nameRU} />
       <div className="movie__data">
         <h3 className="movie__title">{nameRU}</h3>

@@ -10,7 +10,6 @@ class MainApi {
     if (res.ok) {
       return res.json();
     }
-
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
@@ -72,17 +71,17 @@ class MainApi {
       headers: this.headers,
       credentials: 'include',
       body: JSON.stringify({country: movie.country,
-        description: movie.description || '',
-        director: movie.director || '',
+        description: movie.description || '-',
+        director: movie.director || '-',
         duration: movie.duration || 0,
         image: imageFormat(movie.image),
         movieId: movie.id,
-        nameEN: movie.nameEN || '',
-        nameRU: movie.nameRU || '',
+        nameEN: movie.nameEN || '-',
+        nameRU: movie.nameRU || '-',
         owner: userId,
         thumbnail: imageThumbnail(movie.image),
         trailerLink: movie.trailerLink,
-        year: +movie.year || 0,
+        year: movie.year || '-',
       }),
     }).then(this._parseResponse);
   }

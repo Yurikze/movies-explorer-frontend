@@ -29,6 +29,7 @@ const Form = ({ inputs, btnText, onSubmit, className = '', error, clearError }) 
               type={input.type}
               required={input.required}
               pattern={input.pattern}
+              minLength={input.minLength}
             />
             <span className="form__error">{errors[input.name]}</span>
           </div>

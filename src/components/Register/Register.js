@@ -21,6 +21,7 @@ const Register = ({ onRegister, error, clearError }) => {
       type: 'email',
       placeholder: 'E-mail',
       required: true,
+      pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
     },
     {
       id: 'password',
@@ -29,6 +30,7 @@ const Register = ({ onRegister, error, clearError }) => {
       type: 'password',
       placeholder: 'Пароль',
       required: true,
+      minLength: 2
     },
   ];
 

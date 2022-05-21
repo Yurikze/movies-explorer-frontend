@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
@@ -13,6 +13,7 @@ const Movies = ({
   onRemove,
   savedMovies,
   noResults,
+  clearError,
 }) => {
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
   const [gridCols, setGridCols] = useState(null);
@@ -65,7 +66,7 @@ const Movies = ({
   }, [screenWidth]);
 
   useEffect(() => {
-    movies.length && setShownMovies(movies.slice(0, limitMovies));
+    setShownMovies(movies.slice(0, limitMovies));
   }, [limitMovies, movies]);
 
   const handleShowMoreMovies = () => {
@@ -77,40 +78,46 @@ const Movies = ({
     onSearch(search, isShort);
   };
 
-  let content = error ? (
-    <p className="movies__error">
-      Во время запроса произошла ошибка. Возможно, проблема с соединением или
-      сервер недоступен. Подождите немного и попробуйте ещё раз
-    </p>
-  ) : (
-    <MoviesCardList
-      movies={shownMovies}
-      onSave={onSave}
-      savedMovies={savedMovies}
-      onRemove={onRemove}
-    />
-  );
+  const handleClearError = () => {
+    clearError();
+  };
 
   return (
     <div className="movies container">
       <SearchForm
         onSearch={handleSearch}
         cacheValue={localStorage.getItem('search')}
+        shortCache={localStorage.getItem('isShort')}
       />
+      {!isLoading && noResults && (
+        <p className="movies__noresults">Ничего не найдено</p>
+      )}
       {isLoading ? (
         <div className="movies__preloader">
           <Preloader />
         </div>
       ) : (
-        content
+        <MoviesCardList
+          movies={shownMovies}
+          onSave={onSave}
+          savedMovies={savedMovies}
+          onRemove={onRemove}
+        />
       )}
-      {!isLoading && noResults && (
-        <p className="movies__noresults">Ничего не найдено</p>
-      )}
+      
       {shownMovies.length < movies.length && (
         <button onClick={handleShowMoreMovies} className="movies__more">
           Еще
         </button>
+      )}
+      {error && (
+        <div className="movies__error">
+          Что-то пошло не так... {error}
+          <span className="form__error-close" onClick={handleClearError}>
+            <div></div>
+            <div></div>
+          </span>
+        </div>
       )}
     </div>
   );

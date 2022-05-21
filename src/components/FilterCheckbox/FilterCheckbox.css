@@ -3,6 +3,7 @@
   display: inline-block;
   width: 34px;
   height: 14px;
+  cursor: pointer;
 }
 
 .switch input {

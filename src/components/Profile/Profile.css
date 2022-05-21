@@ -83,6 +83,22 @@
   color: #ff4062;
 }
 
+.profile__form-success {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  margin: 0;
+  color: #4fc02f;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.profile__form-success_visible {
+  opacity: 1;
+}
+
 @media (max-width: 767px) {
   .profile {
     position: relative;

@@ -3,9 +3,9 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { ReactComponent as SearchIcon } from '../../images/search-icon.svg';
 import './SearchForm.css';
 
-const SearchForm = ({ onSearch, cacheValue }) => {
+const SearchForm = ({ onSearch, cacheValue, shortCache }) => {
   const [search, setSearch] = useState(cacheValue);
-  const [isShort, setIsShort] = useState(false);
+  const [isShort, setIsShort] = useState(shortCache === 'true' ? true : false);
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(search, isShort);

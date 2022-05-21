@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
-import {filterMovies} from '../../utils/filterMovies'
+import { filterMovies } from '../../utils/filterMovies';
 import './SavedMovies.css';
 
 const SavedMovies = ({ savedMovies, onRemove }) => {
@@ -9,36 +9,22 @@ const SavedMovies = ({ savedMovies, onRemove }) => {
   const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
-    console.log(savedMovies);
-    if (localStorage.getItem('searchSaved')) {
-      const filteredMovies = filterMovies(localStorage.getItem('searchSaved'), savedMovies);
-      if (!filteredMovies.length) {
-        setNoResults(true)
-      } else {
-        setNoResults(false)
-      }
-      setShownMovies(filteredMovies, savedMovies);
-    }
-
+    setShownMovies(savedMovies);
   }, [savedMovies]);
 
   const onSearch = (search, isShort) => {
     const filteredMovies = filterMovies(search, savedMovies, isShort);
-    localStorage.setItem('searchSaved', search);
     if (!filteredMovies.length) {
-      setNoResults(true)
+      setNoResults(true);
     } else {
-      setNoResults(false)
+      setNoResults(false);
     }
     setShownMovies(filteredMovies);
   };
 
   return (
     <section className="container saved-movies">
-      <SearchForm
-        onSearch={onSearch}
-        cacheValue={localStorage.getItem('searchSaved')}
-      />
+      <SearchForm onSearch={onSearch} />
       <MoviesCardList
         onRemove={onRemove}
         savedMovies={savedMovies}

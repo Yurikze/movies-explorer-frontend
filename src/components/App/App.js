@@ -27,6 +27,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
   const [noResults, setNoResults] = useState(false);
   const [currentUser, setCurrentUser] = useState(user);
   const history = useHistory();
@@ -66,14 +67,14 @@ function App() {
 
   const handleSearch = async (searchValue, isShort) => {
     try {
-      setError('');
+      clearError();
       setIsLoading(true);
       const movies = await fetchMovies();
       const filteredMovies = filterMovies(searchValue, movies, isShort);
-      console.log(filteredMovies, isShort);
       setMovies(filteredMovies);
       localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
       localStorage.setItem('search', searchValue);
+      localStorage.setItem('isShort', isShort)
       if (!filteredMovies.length) {
         setNoResults(true);
       } else {
@@ -110,12 +111,14 @@ function App() {
   //save, delete movie
 
   const handleSaveMovie = async (movie, userId) => {
+    clearError()
     try {
       const response = await mainApi.saveMovie(movie, userId);
       const tmpSavedMovies = [...savedMovies, response];
       setSavedMovies(tmpSavedMovies);
       localStorage.setItem('savedMovies', JSON.stringify(tmpSavedMovies));
     } catch (error) {
+      setError(error)
       console.log(error);
     }
   };
@@ -158,6 +161,8 @@ function App() {
   const handleLogout = () => {
     mainApi.signout();
     setIsLoggedIn(false);
+    localStorage.clear()
+    setMovies([])
   };
 
   const handleUpdateUser = async (values) => {
@@ -167,10 +172,15 @@ function App() {
         ...user,
         ...response,
       }));
+      setSuccess(true)
     } catch (error) {
       console.log(error);
     }
   };
+
+  const clearSuccess = () => {
+    setSuccess(false)
+  }
 
   return (
     <div className="App">
@@ -194,6 +204,7 @@ function App() {
             onRemove={handleRemoveMovie}
             savedMovies={savedMovies}
             noResults={noResults}
+            clearError={clearError}
           />
 
           <ProtectedRoute
@@ -210,6 +221,8 @@ function App() {
             isLoggedIn={isLoggedIn}
             onLogout={handleLogout}
             onUpdate={handleUpdateUser}
+            success={success}
+            clearSuccess={clearSuccess}
           />
           <Route path="/signup">
             {isLoggedIn ? (

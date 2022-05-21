@@ -11,7 +11,8 @@ const Login = ({onLogin, error, clearError}) => {
       name: 'email',
       type: 'email',
       placeholder: 'E-mail',
-      required: true
+      required: true,
+      pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
     },
     {
       id: 'password',
@@ -19,7 +20,8 @@ const Login = ({onLogin, error, clearError}) => {
       name: 'password',
       type: 'password',
       placeholder: 'Пароль',
-      required: true
+      required: true,
+      minLength: 2
     },
   ];
 

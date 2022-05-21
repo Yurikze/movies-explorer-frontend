@@ -3,7 +3,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/useForm';
 import './Profile.css';
 
-const Profile = ({ onLogout, onUpdate }) => {
+const Profile = ({ onLogout, onUpdate, success, clearSuccess }) => {
   const { name, email } = useContext(CurrentUserContext);
   const { values, handleChange, errors, isValid, setValues } =
     useFormWithValidation();
@@ -13,10 +13,16 @@ const Profile = ({ onLogout, onUpdate }) => {
     setValues({ name, email });
   }, [setValues, name, email]);
 
+  useEffect(() => {
+    if (success) {
+      setTimeout(clearSuccess, 2000)
+    }
+  }, [success, clearSuccess]);
+
   const formEvtHandler = (e) => {
     e.preventDefault();
     if (isEditMode) {
-      onUpdate(values)
+      onUpdate(values);
       setIsEditMode(false);
     } else {
       setIsEditMode(true);
@@ -24,7 +30,11 @@ const Profile = ({ onLogout, onUpdate }) => {
   };
 
   const formBtn = isEditMode ? (
-    <button type="submit" className="profile__submit" disabled={!isValid}>
+    <button
+      type="submit"
+      className="profile__submit"
+      disabled={!isValid || (values.name === name && values.email === email)}
+    >
       Сохранить
     </button>
   ) : (
@@ -49,8 +59,7 @@ const Profile = ({ onLogout, onUpdate }) => {
             maxLength={30}
             required
           />
-          <span className='profile__input-error'>{errors.name}</span>
-
+          <span className="profile__input-error">{errors.name}</span>
         </div>
         <div className="profile__input-container">
           <span className="profile__input-span">E-mail</span>
@@ -64,10 +73,17 @@ const Profile = ({ onLogout, onUpdate }) => {
             onChange={handleChange}
             required
           />
-          <span className='profile__input-error'>{errors.email}</span>
+          <span className="profile__input-error">{errors.email}</span>
         </div>
 
         {formBtn}
+        <p
+          className={`profile__form-success ${
+            success && 'profile__form-success_visible'
+          }`}
+        >
+          Сохранено!
+        </p>
       </form>
       <button className="profile__logout" onClick={onLogout}>
         Выйти из аккаунта
