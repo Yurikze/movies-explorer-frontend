@@ -11,6 +11,11 @@
   flex-grow: 1;
 }
 
+.movie__img {
+  max-height: 205px;
+  height: 100%;
+}
+
 .movie__data {
   padding: 16px;
   display: grid;
@@ -31,6 +36,7 @@
   height: 30px;
   border: none;
   padding: 0;
+  cursor: pointer;
 }
 
 .movies__btn_type_like {
